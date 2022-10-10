@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const Reactions = require('./Reactions')
 
-// Schema to create Post model
+// Schema to create thoughts model
 const thoughtsSchema = new Schema(
   {
     thoughtText: {
@@ -40,7 +40,7 @@ thoughtsSchema
     return this.reactions.length;
   });
 
-// Initialize our Application model
+// Initialize our thoughts model
 const Thoughts = model('thoughts', thoughtsSchema);
 
 module.exports = Thoughts;

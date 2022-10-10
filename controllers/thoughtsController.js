@@ -80,7 +80,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Adds a reaction to an thought. This method is unique in that we add the entire body of the reaction rather than the ID with the mongodb $addToSet operator.
+  // Adds a reaction to an thought. 
   addReaction(req, res) {
     Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -94,7 +94,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove thought reaction. This method finds the thought based on ID. It then updates the reactions array associated with the app in question by removing it's reactionId from the reactions array.
+  // Remove thought reaction. 
   removeReaction(req, res) {
     Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
