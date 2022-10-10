@@ -59,27 +59,23 @@ module.exports = {
       });
   },
   // Deletes an thought from the database. Looks for an app by ID.
-  // Then if the app exists, we look for any users associated with the app based on he app ID and update the thoughts array for the User.
   deleteThought(req, res) {
     Thoughts.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with this id!' })
-          : User.findOneAndUpdate(
-              { thoughts: req.params.thoughtId },
-              { $pull: { thoughts: req.params.thoughtId } },
-              { new: true }
-            )
+          : res.json({message: 'Thought Deleted'})
       )
-      .then((user) =>
-        !user
-          ? res.status(404).json({
-              message: 'thought deleted but no user with this id!',
-            })
-          : res.json({ message: 'thought successfully deleted!' })
-      )
+      // .then((user) =>
+      //   !user
+      //     ? res.status(404).json({
+      //         message: 'thought deleted!',
+      //       })
+      //     : res.json({ message: 'thought successfully deleted!' })
+      // )
       .catch((err) => res.status(500).json(err));
   },
+  
   // Adds a reaction to an thought. 
   addReaction(req, res) {
     Thoughts.findOneAndUpdate(

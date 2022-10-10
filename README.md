@@ -6,6 +6,8 @@ This project was completed for a coding bootcamp challenge assignment. It utiliz
 
 After working with sql to create schema and models I found that mongoose was much easier to work with. Removing friends was the route I struggled with the most.
 
+[Walkthrough Video](https://drive.google.com/file/d/1vMJts222LWtuqV3LJZ37NJpF7RRp0Cxn/view)
+
 ## Table of Contents 
 
 * [Installation](#installation)
