@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { Thoughts } = require('.');
 const Reactions = require('./Reactions')
 
 // Schema to create Post model
@@ -14,6 +13,9 @@ const thoughtsSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (date) => {
+        if (date) return date.toISOString()
+      }
     },
     username: {
       type: String,
@@ -23,6 +25,7 @@ const thoughtsSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,

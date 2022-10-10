@@ -1,7 +1,7 @@
 {
-  "name": "26-Stu_Mongoose-CRUD",
+  "name": "social-networking-api",
   "version": "1.0.0",
-  "description": "Reverse engineer developer activity for CRUD methods in Mongoose",
+  "description": "Engineer api routes for social networking app",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
