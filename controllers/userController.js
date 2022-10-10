@@ -11,6 +11,8 @@ module.exports = {
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
+      .populate('thoughts')
+      .populate('friends')
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
@@ -45,7 +47,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with this id!' })
-          : res.json(thought)
+          : res.json(user)
       )
       .catch((err) => {
         console.log(err);
@@ -55,7 +57,7 @@ module.exports = {
 
   addFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.thoughtId },
+      { _id: req.params.userId },
       { $addToSet: { friends: req.body } },
       { runValidators: true, new: true }
     )
@@ -66,10 +68,10 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove thought reaction. This method finds the thought based on ID. It then updates the reactions array associated with the app in question by removing it's reactionId from the reactions array.
+  
   removeFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.thoughtId },
+      { _id: req.params.userId },
       { $pull: { friends: { friendId: req.params.friendId } } },
       { runValidators: true, new: true }
     )
