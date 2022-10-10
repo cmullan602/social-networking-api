@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const { Thoughts } = require('.');
-const User = require('./User');
 const Reactions = require('./Reactions')
 
 // Schema to create Post model
@@ -30,7 +29,7 @@ const thoughtsSchema = new Schema(
   }
 );
 
-// Create a virtual property `getTags` that gets the amount of tags associated with an application
+// Virtual to get length of reactions array
 thoughtsSchema
   .virtual('getReactions')
   // Getter

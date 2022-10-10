@@ -1,28 +1,29 @@
 const router = require('express').Router();
-const {
-  getApplications,
-  getSingleApplication,
-  createApplication,
-  updateApplication,
-  deleteApplication,
-  addTag,
-  removeTag,
-} = require('../../controllers/appController');
 
-// /api/applications
-router.route('/').get(getApplications).post(createApplication);
+const {
+  getThoughts,
+  getSingleThought,
+  createThought,
+  updateThought,
+  deleteThought,
+  addReaction,
+  removeReaction,
+} = require('../../controllers/thoughtsController');
+
+// /api/thoughts
+router.route('/').get(getThoughts).post(createThought);
 
 // /api/applications/:applicationId
 router
-  .route('/:applicationId')
-  .get(getSingleApplication)
-  .put(updateApplication)
-  .delete(deleteApplication);
+  .route('/:thoughtId')
+  .get(getSingleThought)
+  .put(updateThought)
+  .delete(deleteThought);
 
 // /api/applications/:applicationId/tags
-router.route('/:applicationId/tags').post(addTag);
+router.route('/:thoughtId/reactions').post(addReaction);
 
 // /api/applications/:applicationId/tags/:tagId
-router.route('/:applicationId/tags/:tagId').delete(removeTag);
+router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;
